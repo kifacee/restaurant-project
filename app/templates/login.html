@@ -1,0 +1,36 @@
+<!-- using 'extends' means this code will be injected into -->
+<!-- {# 'base.html' at the location with the matching {% block name %} #} -->
+<!-- {# so, in the {% block content %} spot #} -->
+ <!-- you will render this file, NOT the parent file base.html -->
+ <!-- proper jinja comments look like {# comment #} else it will still try to render -->
+<!-- any curly brace variables in it -->
+{% extends "base.html" %}
+
+{% block content %}
+<form method="post" action="{{ url_for('.login') }}">
+  {{ form.hidden_tag()  }}
+  <div>
+    {{ form.employee_number.label }} {{ form.employee_number }}
+
+    {% if form.employee_number.errors %}
+      <ul>
+        {% for error in form.employee_number.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div>
+    {{ form.password.label }} {{ form.password }}
+
+    {% if form.employee_number.errors %}
+      <ul>
+        {% for error in form.employee_number.errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div>{{ form.submit }}</div>
+</form>
+{% endblock %}

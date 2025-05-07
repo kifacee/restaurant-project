@@ -1,0 +1,19 @@
+<html>
+  <head>
+    {% if title %}
+      <title>{{ title }} - Order Up!</title>
+    {% else %}
+      <title>Welcome to Order Up!</title>
+    {% endif %}
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+    {% if not current_user.is_anonymous %}
+    <!-- is_anonymous is a method from flask_login that checks if current_user is not logged in -->
+    <form action="{{ url_for("session.logout") }}" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    {% endif %}
+  </body>
+</html>
